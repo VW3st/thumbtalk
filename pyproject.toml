@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "holdtalk"
+version = "0.1.0"
+description = "Hold a mouse button, talk, let go. Private, offline dictation for Windows that runs Whisper on your own PC."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "faster-whisper>=1.1",
+    "sounddevice>=0.5",
+    "numpy>=1.26",
+    "pynput>=1.7.7",
+    "pystray>=0.19",
+    "pillow>=10",
+    "pyperclip>=1.9",
+]
+
+[project.optional-dependencies]
+# GPU speed-up for NVIDIA cards (the installer adds this automatically when it finds one)
+cuda = ["nvidia-cublas-cu12", "nvidia-cudnn-cu12>=9,<10"]
+
+[project.gui-scripts]
+holdtalk = "holdtalk.app:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["holdtalk"]

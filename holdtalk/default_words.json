@@ -1,0 +1,42 @@
+{
+  "vocab": [
+    "Claude",
+    "Claude Code",
+    "ChatGPT",
+    "OpenAI",
+    "Anthropic",
+    "Cursor",
+    "GitHub",
+    "MCP",
+    "API",
+    "JSON",
+    "TypeScript",
+    "JavaScript",
+    "Python",
+    "React",
+    "Next.js",
+    "Node.js",
+    "npm",
+    "Supabase",
+    "PostgreSQL",
+    "Docker",
+    "VS Code",
+    "PowerShell",
+    "Ollama",
+    "Whisper",
+    "localhost",
+    "README"
+  ],
+  "fix": {
+    "\\bsuper ?(?:base|bass|bays)\\b": "Supabase",
+    "\\bm\\.? ?c\\.? ?p\\b": "MCP",
+    "\\b(?:clawed|cloud|clod) code\\b": "Claude Code",
+    "\\bo ?llama\\b": "Ollama",
+    "\\bgit ?hub\\b": "GitHub",
+    "\\bpower ?shell\\b": "PowerShell",
+    "\\bnext ?js\\b": "Next.js",
+    "\\bnode ?js\\b": "Node.js",
+    "\\bjason\\b(?= (?:file|object|schema|data|response))": "JSON",
+    "\\bchat ?gpt\\b": "ChatGPT"
+  }
+}
