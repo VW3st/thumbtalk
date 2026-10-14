@@ -44,6 +44,18 @@ def test_commands_can_be_switched_off():
         S.update(cmd_send=True, cmd_newline=True, cmd_scratch=True)
 
 
+
+def test_stray_letters():
+    t, _ = cmd("I don't really understand how this works. A new paragraph and let's see.")
+    assert t == "I don't really understand how this works.\n\nAnd let's see.", repr(t)
+    t, _ = cmd("Hi, how are you there, and a new line what can we do here?")
+    assert t == "Hi, how are you there,\nWhat can we do here?", repr(t)
+    t, _ = cmd("We'll go with plan A.")
+    assert t == "We'll go with plan A.", repr(t)
+    t, _ = cmd("It works. E")
+    assert t == "It works.", repr(t)
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

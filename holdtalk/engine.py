@@ -147,7 +147,7 @@ def transcribe(audio, fast=False, context=""):
     return " ".join(out).strip()
 
 
-FILLER = re.compile(r"(^|[\s,.…])(?:um+|uh+|erm+|err+|ah+|hmm+)\b[,.…]*(?=\s|$)", re.I)
+FILLER = re.compile(r"(^|[\s,.…])(?:um+|uh+|erm+|err+|ah+|eh+|hmm+)\b[,.…]*(?=\s|$)", re.I)
 
 
 def fix(t):
@@ -165,7 +165,8 @@ def fix(t):
 # ---------------- voice commands ----------------
 SEND_RE = re.compile(r"[\s,.;:!-]*\b(?:and\s+|now\s+)?(?:send|sent)\s+it[\s.!]*$", re.I)
 SCRATCH_RE = re.compile(r"[\s,;:.!?]*\bscratch that\b[\s,.;:!]*", re.I)
-NEWLINE_RE = re.compile(r"[ \t]*\bnew (line|paragraph)\b[ \t,.;:!]*", re.I)
+NEWLINE_RE = re.compile(r"[ \t]*\b(?:(?:and|then)[ \t]+)?(?:(?:a|an|the)[ \t]+)?new (line|paragraph)\b[ \t,.;:!]*", re.I)
+STRAY_RE = re.compile(r"([.?!,])[ \t]+(?:a|an|e|eh)[ \t.,…]*(?=\n|$)", re.I)   # "works. A" - a hesitation heard as a letter
 
 
 def apply_commands(t):
@@ -191,6 +192,7 @@ def apply_commands(t):
     if S["cmd_newline"]:
         t = NEWLINE_RE.sub(lambda m: "\n\n" if m.group(1).lower() == "paragraph" else "\n", t)
         t = re.sub(r"(\n)([a-z])", lambda m: m.group(1) + m.group(2).upper(), t)
+    t = STRAY_RE.sub(r"\1", t)
     return t.strip(" "), act
 
 
