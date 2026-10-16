@@ -18,7 +18,9 @@ Write-Host ""
 # 1. uv
 if (-not (Get-Command uv -ErrorAction SilentlyContinue)) {
     Say "Installing uv..."
-    powershell -NoProfile -ExecutionPolicy Bypass -Command "irm https://astral.sh/uv/install.ps1 | iex" | Out-Null
+    # run uv's official installer in this same window: starting a hidden second PowerShell with
+    # "-ExecutionPolicy Bypass" looks like malware to Windows Security and gets blocked
+    & ([scriptblock]::Create((Invoke-RestMethod "https://astral.sh/uv/install.ps1"))) | Out-Null
     $env:Path = "$HOME\.local\bin;$env:Path"
     if (-not (Get-Command uv -ErrorAction SilentlyContinue)) { throw "uv did not install. See https://docs.astral.sh/uv/ and run this again." }
 }
