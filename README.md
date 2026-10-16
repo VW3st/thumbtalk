@@ -2,7 +2,7 @@
 
 Hold a mouse button, talk, let go. Your words appear wherever your cursor is.
 
-![ThumbTalk demo: dictating an email with paragraph breaks](docs/demo.gif)
+![ThumbTalk demo: dictating an email with paragraph breaks](https://raw.githubusercontent.com/VW3st/thumbtalk/main/docs/demo.gif)
 
 ThumbTalk is free, open-source dictation for Windows: a private, offline alternative to Wispr Flow, Dragon and Windows voice typing. Speech recognition runs on your own PC with OpenAI's Whisper model, so nothing you say is sent anywhere. No account, no subscription, works offline.
 
@@ -49,7 +49,7 @@ Each command can be switched off in settings.
 
 Click the tray icon. You can change:
 
-![ThumbTalk settings](docs/settings.png)
+![ThumbTalk settings](https://raw.githubusercontent.com/VW3st/thumbtalk/main/docs/settings.png)
 
 - **Hold to talk:** mouse Back, mouse Forward, middle mouse button, or the Right Ctrl key
 - **Hold time:** how long a press counts as "hold" rather than a click
@@ -99,6 +99,6 @@ How it works: a low-level mouse hook catches the trigger button and passes quick
 
 ## Licence
 
-[GPL-3.0](LICENSE). You're free to use, study, change and share ThumbTalk. If you share or sell a changed version, you have to publish its source code under the same licence.
+[GPL-3.0](https://github.com/VW3st/thumbtalk/blob/main/LICENSE). You're free to use, study, change and share ThumbTalk. If you share or sell a changed version, you have to publish its source code under the same licence.
 
 Copyright © 2026 Valentino Margarit, [AI Playgrounds](https://aiplaygrounds.xyz).

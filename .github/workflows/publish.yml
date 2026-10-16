@@ -1,0 +1,19 @@
+# Publishing a GitHub release builds the package and uploads it to PyPI.
+# Uses PyPI "trusted publishing": no passwords or tokens are stored anywhere.
+name: Publish to PyPI
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  pypi:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv build
+      - uses: pypa/gh-action-pypi-publish@release/v1

@@ -2,9 +2,13 @@
 #   irm https://raw.githubusercontent.com/VW3st/thumbtalk/main/install.ps1 | iex
 # Installs uv (a small Python manager) if needed, then ThumbTalk with its own private Python.
 # Nothing is installed system-wide and no admin rights are needed.
-param([string]$Source = "git+https://github.com/VW3st/thumbtalk")
+param([string]$Source = "")
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
+if (-not $Source) {   # the latest published release, not whatever is on main right now
+    try { $tag = (Invoke-RestMethod "https://api.github.com/repos/VW3st/thumbtalk/releases/latest" -TimeoutSec 15).tag_name } catch { $tag = $null }
+    $Source = if ($tag) { "git+https://github.com/VW3st/thumbtalk@$tag" } else { "git+https://github.com/VW3st/thumbtalk" }
+}
 function Say($t) { Write-Host "  $t" -ForegroundColor Cyan }
 
 Write-Host ""
