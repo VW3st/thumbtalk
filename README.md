@@ -2,9 +2,9 @@
 
 Hold a mouse button, talk, let go. Your words appear wherever your cursor is.
 
-ThumbTalk is free, open-source dictation for Windows: a private, offline alternative to Wispr Flow, Dragon and Windows voice typing. Speech recognition runs on your own PC with OpenAI's Whisper model, so nothing you say is sent anywhere. No account, no subscription, works offline.
+![ThumbTalk demo: dictating an email with paragraph breaks](docs/demo.gif)
 
-![ThumbTalk settings](docs/settings.png)
+ThumbTalk is free, open-source dictation for Windows: a private, offline alternative to Wispr Flow, Dragon and Windows voice typing. Speech recognition runs on your own PC with OpenAI's Whisper model, so nothing you say is sent anywhere. No account, no subscription, works offline.
 
 It was built for talking to AI coding tools (Claude Code, Cursor, ChatGPT) all day, but it works in any app: email, Slack, Word, the browser, the terminal.
 
@@ -48,6 +48,8 @@ Each command can be switched off in settings.
 ## Settings
 
 Click the tray icon. You can change:
+
+![ThumbTalk settings](docs/settings.png)
 
 - **Hold to talk:** mouse Back, mouse Forward, middle mouse button, or the Right Ctrl key
 - **Hold time:** how long a press counts as "hold" rather than a click
