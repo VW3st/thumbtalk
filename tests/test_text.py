@@ -2,8 +2,8 @@
 import os, sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from holdtalk import engine  # noqa: E402
-from holdtalk.config import S  # noqa: E402
+from thumbtalk import engine  # noqa: E402
+from thumbtalk.config import S  # noqa: E402
 
 S.update(cmd_send=True, cmd_newline=True, cmd_scratch=True)
 

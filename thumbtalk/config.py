@@ -1,13 +1,14 @@
-"""Settings and word list, stored per user in %APPDATA%\\Holdtalk (never inside the install folder)."""
+"""Settings and word list, stored per user in %APPDATA%\\ThumbTalk (never inside the install folder)."""
 import json, os, shutil
 
-APP = "Holdtalk"
+APP = "ThumbTalk"
 VERSION = "0.1.0"
+HOME_URL = "https://github.com/VW3st/thumbtalk"
 DIR = os.path.join(os.environ.get("APPDATA") or os.path.expanduser("~"), APP)
 os.makedirs(DIR, exist_ok=True)
 SETTINGS_F = os.path.join(DIR, "settings.json")
 WORDS_F = os.path.join(DIR, "words.json")
-LOG_F = os.path.join(DIR, "holdtalk.log")
+LOG_F = os.path.join(DIR, "thumbtalk.log")
 DEFAULT_WORDS_F = os.path.join(os.path.dirname(os.path.abspath(__file__)), "default_words.json")
 
 DEFAULTS = {

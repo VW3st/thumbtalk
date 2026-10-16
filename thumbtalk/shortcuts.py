@@ -6,7 +6,7 @@ from .config import APP, DIR
 _PROGRAMS = os.path.join(os.environ.get("APPDATA", ""), r"Microsoft\Windows\Start Menu\Programs")
 START_MENU = os.path.join(_PROGRAMS, APP + ".lnk")
 STARTUP = os.path.join(_PROGRAMS, "Startup", APP + ".lnk")
-ICON = os.path.join(DIR, "holdtalk.ico")
+ICON = os.path.join(DIR, "thumbtalk.ico")
 
 
 def desktop_path():
@@ -44,7 +44,7 @@ def make(path):
         icon_image().resize((256, 256)).save(ICON, sizes=[(16, 16), (32, 32), (48, 48), (256, 256)])
     q = lambda s: s.replace("'", "''")
     ps = (f"$s=(New-Object -ComObject WScript.Shell).CreateShortcut('{q(path)}');"
-          f"$s.TargetPath='{q(_pythonw())}';$s.Arguments='-m holdtalk';$s.WorkingDirectory='{q(DIR)}';"
+          f"$s.TargetPath='{q(_pythonw())}';$s.Arguments='-m thumbtalk';$s.WorkingDirectory='{q(DIR)}';"
           f"$s.IconLocation='{q(ICON)}';$s.Description='Hold a button, talk, let go';$s.Save()")
     subprocess.run(["powershell", "-NoProfile", "-Command", ps], creationflags=0x08000000, check=False)
 

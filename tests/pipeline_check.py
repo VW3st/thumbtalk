@@ -4,12 +4,12 @@ import os, subprocess, sys, tempfile, threading, time, wave
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 import numpy as np  # noqa: E402
-from holdtalk import engine  # noqa: E402
-from holdtalk.config import S  # noqa: E402
+from thumbtalk import engine  # noqa: E402
+from thumbtalk.config import S  # noqa: E402
 
 SAY = ("Please check the Supabase table. Scratch that. Check the GitHub logs instead. New line. "
        "And make sure the MCP server is connected to Claude Code. Send it.")
-wav = os.path.join(tempfile.gettempdir(), "holdtalk_check.wav")
+wav = os.path.join(tempfile.gettempdir(), "thumbtalk_check.wav")
 ps = ("Add-Type -AssemblyName System.Speech; $s=New-Object System.Speech.Synthesis.SpeechSynthesizer;"
       "$f=New-Object System.Speech.AudioFormat.SpeechAudioFormatInfo(16000,[System.Speech.AudioFormat.AudioBitsPerSample]::Sixteen,[System.Speech.AudioFormat.AudioChannel]::Mono);"
       f"$s.SetOutputToWaveFile('{wav}',$f); $s.Speak('{SAY}'); $s.Dispose()")

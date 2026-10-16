@@ -1,14 +1,14 @@
-# Holdtalk installer for Windows.
-#   irm https://raw.githubusercontent.com/VW3st/holdtalk/main/install.ps1 | iex
-# Installs uv (a small Python manager) if needed, then Holdtalk with its own private Python.
+# ThumbTalk installer for Windows.
+#   irm https://raw.githubusercontent.com/VW3st/thumbtalk/main/install.ps1 | iex
+# Installs uv (a small Python manager) if needed, then ThumbTalk with its own private Python.
 # Nothing is installed system-wide and no admin rights are needed.
-param([string]$Source = "git+https://github.com/VW3st/holdtalk")
+param([string]$Source = "git+https://github.com/VW3st/thumbtalk")
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
 function Say($t) { Write-Host "  $t" -ForegroundColor Cyan }
 
 Write-Host ""
-Write-Host "  Installing Holdtalk" -ForegroundColor White
+Write-Host "  Installing ThumbTalk" -ForegroundColor White
 Write-Host ""
 
 # 1. uv
@@ -21,28 +21,28 @@ if (-not (Get-Command uv -ErrorAction SilentlyContinue)) {
 
 # 2. NVIDIA card? Then add the GPU speed-up
 $nvidia = @(Get-CimInstance Win32_VideoController -ErrorAction SilentlyContinue | Where-Object { $_.Name -match "NVIDIA" }).Count -gt 0
-$pkg = if ($nvidia) { "holdtalk[cuda] @ $Source" } else { "holdtalk @ $Source" }
+$pkg = if ($nvidia) { "thumbtalk[cuda] @ $Source" } else { "thumbtalk @ $Source" }
 if ($nvidia) { Say "NVIDIA graphics card found: installing the fast GPU version." }
 else { Say "No NVIDIA card found: installing the CPU version (works everywhere, a bit slower)." }
 
 # 3. Stop a running copy so files can be replaced
 Get-CimInstance Win32_Process -Filter "Name='pythonw.exe' OR Name='python.exe'" -ErrorAction SilentlyContinue |
-    Where-Object { $_.CommandLine -match "holdtalk" } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }
+    Where-Object { $_.CommandLine -match "thumbtalk" } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }
 
 # 4. Install
 Say "Downloading and installing (a few minutes the first time)..."
-uv tool install --python 3.12 --force --reinstall-package holdtalk $pkg
+uv tool install --python 3.12 --force --reinstall-package thumbtalk $pkg
 if ($LASTEXITCODE -ne 0) { throw "Install failed (see the messages above)." }
 
 # 5. Shortcuts + start
 $toolDir = (uv tool dir).Trim()
-$pyw = Join-Path $toolDir "holdtalk\Scripts\pythonw.exe"
+$pyw = Join-Path $toolDir "thumbtalk\Scripts\pythonw.exe"
 if (-not (Test-Path $pyw)) { throw "Could not find the installed app at $pyw" }
-& $pyw -m holdtalk --setup
-Start-Process $pyw -ArgumentList "-m holdtalk"
+& $pyw -m thumbtalk --setup
+Start-Process $pyw -ArgumentList "-m thumbtalk"
 
 Write-Host ""
-Write-Host "  Done. Holdtalk is running (microphone icon next to the clock)." -ForegroundColor Green
+Write-Host "  Done. ThumbTalk is running (microphone icon next to the clock)." -ForegroundColor Green
 Write-Host "  Hold your mouse Back button, talk, let go. The speech model downloads on first start (about 1.6 GB on GPU)."
 Write-Host "  Click the tray icon for settings."
 Write-Host ""

@@ -1,8 +1,10 @@
-# Holdtalk
+# ThumbTalk
 
 Hold a mouse button, talk, let go. Your words appear wherever your cursor is.
 
-Holdtalk is free, open-source dictation for Windows. Speech recognition runs on your own PC with OpenAI's Whisper model, so nothing you say is sent anywhere. No account, no subscription, works offline.
+ThumbTalk is free, open-source dictation for Windows: a private, offline alternative to Wispr Flow, Dragon and Windows voice typing. Speech recognition runs on your own PC with OpenAI's Whisper model, so nothing you say is sent anywhere. No account, no subscription, works offline.
+
+![ThumbTalk settings](docs/settings.png)
 
 It was built for talking to AI coding tools (Claude Code, Cursor, ChatGPT) all day, but it works in any app: email, Slack, Word, the browser, the terminal.
 
@@ -11,7 +13,7 @@ It was built for talking to AI coding tools (Claude Code, Cursor, ChatGPT) all d
 Open PowerShell and paste:
 
 ```powershell
-irm https://raw.githubusercontent.com/VW3st/holdtalk/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/VW3st/thumbtalk/main/install.ps1 | iex
 ```
 
 That's it. The installer:
@@ -55,7 +57,7 @@ Click the tray icon. You can change:
 - **Panel position:** any corner or side, or drag it anywhere
 - **My words:** names, products and jargon it should always spell right (for example your company name or "Supabase")
 
-Your settings and word list live in `%APPDATA%\Holdtalk`.
+Your settings and word list live in `%APPDATA%\ThumbTalk`.
 
 ## Requirements
 
@@ -74,14 +76,14 @@ If nothing happens when you hold the button, check **Windows Settings > Privacy 
 ## Uninstall
 
 ```powershell
-irm https://raw.githubusercontent.com/VW3st/holdtalk/main/uninstall.ps1 | iex
+irm https://raw.githubusercontent.com/VW3st/thumbtalk/main/uninstall.ps1 | iex
 ```
 
 ## For developers
 
 ```powershell
-git clone https://github.com/VW3st/holdtalk; cd holdtalk
-uv run --extra cuda python -m holdtalk          # run from source
+git clone https://github.com/VW3st/thumbtalk; cd thumbtalk
+uv run --extra cuda python -m thumbtalk          # run from source
 uv run python tests/test_text.py                # voice command tests
 uv run --extra cuda python tests/pipeline_check.py   # end-to-end test with a synthetic recording
 ```
@@ -95,4 +97,6 @@ How it works: a low-level mouse hook catches the trigger button and passes quick
 
 ## Licence
 
-MIT. Built by [AI Playgrounds](https://aiplaygrounds.xyz).
+[GPL-3.0](LICENSE). You're free to use, study, change and share ThumbTalk. If you share or sell a changed version, you have to publish its source code under the same licence.
+
+Copyright © 2026 Valentino Margarit, [AI Playgrounds](https://aiplaygrounds.xyz).

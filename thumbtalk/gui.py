@@ -1,12 +1,12 @@
 """On-screen panel, tray icon and settings window. All Tk work happens on the main thread (tick)."""
-import ctypes, os, queue, subprocess, threading, time
+import ctypes, os, queue, subprocess, threading, time, webbrowser
 import tkinter as tk
 from tkinter import ttk
 
 import numpy as np
 
 from . import engine, shortcuts, trigger
-from .config import APP, VERSION, S, W, WORDS_F, save_settings, save_words
+from .config import APP, HOME_URL, VERSION, S, W, WORDS_F, save_settings, save_words
 from .engine import st, ui, levels
 
 BG, KEY, BORDER = "#1f1f23", "#010203", "#34343c"
@@ -311,7 +311,10 @@ def open_settings():
         w.destroy()
 
     btns = ttk.Frame(f)
-    btns.grid(row=row[0], column=0, columnspan=2, sticky="e", pady=(14, 0))
+    btns.grid(row=row[0], column=0, columnspan=2, sticky="ew", pady=(14, 0))
+    credit = ttk.Label(btns, text=f"{APP} {VERSION}  ·  by AI Playgrounds", foreground="#888", cursor="hand2")
+    credit.pack(side="left")
+    credit.bind("<Button-1>", lambda e: webbrowser.open(HOME_URL))
     ttk.Button(btns, text="Cancel", command=w.destroy).pack(side="right")
     ttk.Button(btns, text="Save", command=save).pack(side="right", padx=8)
     w.bind("<Escape>", lambda e: w.destroy())

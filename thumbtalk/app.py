@@ -1,6 +1,6 @@
-"""Entry point.  holdtalk            run the app
-                holdtalk --setup    create Start menu, desktop and start-with-Windows shortcuts
-                holdtalk --remove   remove those shortcuts (before `uv tool uninstall holdtalk`)"""
+"""Entry point.  thumbtalk            run the app
+                thumbtalk --setup    create Start menu, desktop and start-with-Windows shortcuts
+                thumbtalk --remove   remove those shortcuts (before `uv tool uninstall thumbtalk`)"""
 import ctypes, sys, threading
 
 from .config import APP, LOG_F
@@ -19,7 +19,7 @@ def main():
         shortcuts.remove_all()
         return
 
-    _mutex = ctypes.windll.kernel32.CreateMutexW(None, False, "Local\\holdtalk_single_instance")  # noqa: F841
+    _mutex = ctypes.windll.kernel32.CreateMutexW(None, False, "Local\\thumbtalk_single_instance")  # noqa: F841
     if ctypes.windll.kernel32.GetLastError() == 183:
         _msg(f"{APP} is already running. Look for the microphone icon next to the clock.")
         return
